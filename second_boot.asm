@@ -1,30 +1,17 @@
 
-; Video mode config
+;mov ax, 0x1000
+;mov ds, ax
 
-video_mode_config:
-pusha
-mov ah, 00h
-mov al, 02h ; 80x25 16 bit color mode
-int 10h
-popa
-ret
+org 0x1000
 
-; Cursor config
+dw 0x0
 
-cursor_config:
-pusha
-mov ah, 00h
-mov al, 02h
-int 10h
+jmp start
 
-mov ah, 02h
-mov bh, 0x00
-xor dx, dx
-int 10h
-popa
-ret
-
-; Print string routine
+start:
+mov si, loaded
+call print_str
+jmp $
 
 print_str:
 pusha
@@ -75,3 +62,5 @@ mov dl, 0x0
 int 10h
 popa 
 jmp .end
+
+loaded: db "Second bootloader has been loaded successfully...", 13, 0

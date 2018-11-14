@@ -1,4 +1,5 @@
 bits 16
+org 0x7c00
 
 ; BPB ( USB Floppy disk emulation)
 
@@ -32,13 +33,13 @@ fileSysType:       db    "FAT12   "
 main:
 
 cli
-mov ax, 0x7C0
-mov ds, ax ; Set up segmentation
+xor ax, ax
+mov ss, ax ; Set stack start at 0x0000:0x8000
+mov ds, ax ; Neutralize data segment
 
 mov bx, 0x8000
 mov bp, bx ; Set up stack
 mov sp, bp
-mov ss, ax
 sti
 
 ; Main code
@@ -46,18 +47,40 @@ sti
 call video_mode_config ; Video Mode configuration
 call cursor_config ; Cursor configuration
 
-mov si, loading_str
+mov si, boot_loading_str
 call print_str
+
+mov si, second_boot_loading_str
+call print_str
+
+; Loading second stage bootloader into RAM
+call load_second_boot
+
+jc disk_error
+
+; ===========================
+;  JUMP TO SECOND BOOTLOADER
+; ===========================
+
+jmp [es:bx] ; Set by 'load_second_boot'
 
 jmp $ ; halt computer
 
 ; End of main code
 
-%include "screen.asm"
+%include "screen.asm" ; Screen-related routines
+%include "disk.asm"   ; Disk related routines
+
+disk_error:
+mov si, derror
+call print_str
+jmp $
 
 ; Data
 
-loading_str: db "Bootloader running.", 13, 0
+boot_loading_str: db "Bootloader running.", 13, 0
+second_boot_loading_str: db "Trying to execute second stage bootloader...", 13, 0
+derror: db "Error reading from disk...", 13, 0
 
 times 510 - ($ - $$) db 0
 dw 0xAA55
