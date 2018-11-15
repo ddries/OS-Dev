@@ -53,6 +53,9 @@ call print_str
 mov si, second_boot_loading_str
 call print_str
 
+; Reset device driver
+call reset_device
+
 ; Loading second stage bootloader into RAM
 call load_second_boot
 
@@ -62,9 +65,12 @@ jc disk_error
 ;  JUMP TO SECOND BOOTLOADER
 ; ===========================
 
-jmp [es:bx] ; Set by 'load_second_boot'
+pop bx
+pop es
 
-jmp $ ; halt computer
+jmp bx ; Set by 'load_second_boot' (es:bx)
+
+jmp halt ; halt computer
 
 ; End of main code
 
@@ -74,6 +80,9 @@ jmp $ ; halt computer
 disk_error:
 mov si, derror
 call print_str
+
+halt:
+cli
 jmp $
 
 ; Data
