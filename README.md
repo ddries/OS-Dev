@@ -7,7 +7,7 @@
 
 ### Include files:
 - screen.asm: Include file with all screen-related routines. Currently, string printing routine and video mode/cursor configuration.
-- disk.asm: Include file with all disk-related routines: Currently, econd stage bootloader loading routine and FDD reset.
+- disk.asm: Include file with all disk-related routines. Currently, second stage bootloader loading routine and FDD reset.
 - keyboard.asm: Include file with all keyboard-related routines. Currently, menu for Kernel/Shell choice.
 
 ## Warnings:
