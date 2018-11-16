@@ -13,5 +13,5 @@
 ## Warnings:
 ### Non-dangerous:
 - 16-bit Shell is buggy. If you're going to play with it, don't backspace when there are no more characters. Furthermore, shell may crash or get stuck sometimes.
-- If you press a different key of the displayed ones, computer will halt. It's not a bug but a coded feature. Just follow the instructions.
+- If you press a different key of the displayed ones at any time user input is needed, computer will halt. It's not a bug but a coded feature. Just follow the instructions.
 - If an error occurs at any time of the boot process, computer will halt. It's a coded feature to prevent damaging the computer. You'll need to restart the PC.
