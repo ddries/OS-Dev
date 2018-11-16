@@ -6,7 +6,7 @@
 - shell.asm: 16-bit shell in real mode. Currently, no commands available. Only printing pressed keys.
 
 ### Include files:
-- screen.asm: Include file with all scren-related routines. Currently, string printing routine and video mode/cursor configuration.
+- screen.asm: Include file with all screen-related routines. Currently, string printing routine and video mode/cursor configuration.
 - disk.asm: Include file with all disk-related routines: Currently, econd stage bootloader loading routine and FDD reset.
 - keyboard.asm: Include file with all keyboard-related routines. Currently, menu for Kernel/Shell choice.
 
