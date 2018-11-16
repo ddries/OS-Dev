@@ -16,7 +16,18 @@ popa
 ret
 
 .load_kernel:
+jmp $
 
 .load_shell:
-jmp $
+call load_shell
+
+pop bx
+pop es
+
+jmp bx ; Jump to shell
+
+
+%include "disk.asm"
+
+
 

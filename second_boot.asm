@@ -10,10 +10,7 @@ call print_str
 mov si, lkernel
 call print_str
 
-; Enter menu
-
-call menu
-
+call menu ; Enter menu
 
 cli
 jmp $ ; Halt computer
@@ -22,5 +19,5 @@ jmp $ ; Halt computer
 %include "screen.asm"
 %include "keyboard.asm"
 
-loaded: db "Second bootloader has been loaded successfully...", 13, 0
-lkernel: db "Load kernel? F1 - Yes. F2 - Remain 16 bit RM", 0
+loaded: db "Second bootloader has been loaded successfully. (0x0:0x1000)", 13, 0
+lkernel: db "F1 - Load 32-bit Kernel.", 13, "F2 - 16-bit Shell.", 13, 0

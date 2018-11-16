@@ -59,6 +59,8 @@ call reset_device
 ; Loading second stage bootloader into RAM
 call load_second_boot
 
+call load_sector
+
 jc disk_error
 
 ; ===========================
@@ -87,8 +89,8 @@ jmp $
 
 ; Data
 
-boot_loading_str: db "Bootloader running.", 13, 0
-second_boot_loading_str: db "Trying to execute second stage bootloader...", 13, 0
+boot_loading_str: db "Bootloader running. (0x0:0x7C00)", 13, 0
+second_boot_loading_str: db "Trying to load second stage bootloader... (0x0:0x1000)", 13, 0
 derror: db "Error reading from disk...", 13, 0
 
 times 510 - ($ - $$) db 0

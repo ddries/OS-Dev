@@ -65,13 +65,14 @@ ret
 .nwln:
 pusha
 mov ah, 03h
-xor bx, bx
+xor bx, bx ; Get cursor
 int 10h
 
 mov ah, 02h
 xor bx, bx
 inc dh
-mov dl, 0x0
+mov dl, 0x0 ; New line
 int 10h
-popa 
-jmp .end
+popa
+inc si
+jmp .print_ch
