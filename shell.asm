@@ -1,7 +1,8 @@
-
-org 0x7E00
+org 0x7DF6
  
 ; Main Loop
+
+mstart:
 
 mov si, sloaded
 call print_str
@@ -42,12 +43,13 @@ int 10h
 
 jmp .read_input ; Next key press
 
+cli
 jmp $
 
 %include "screen.asm"
 
-sloaded: db "Shell loaded at 0x0:0x7E00", 13, 0
+sloaded: db "Shell loaded", 13, 0
 nl: db "", 13, 0
 cstart: db "$ ", 0
 
-char: resb 1
+char:

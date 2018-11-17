@@ -10,6 +10,9 @@
 - disk.asm: Include file with all disk-related routines: Currently, econd stage bootloader loading routine and FDD reset.
 - keyboard.asm: Include file with all keyboard-related routines. Currently, menu for Kernel/Shell choice.
 
+### Other files:
+- makefile: Used to compile the OS in UNIX. Currently, I have no file to compile in Windows. By the way, you can copy source code and compile yourself very easy.
+
 ## Warnings:
 ### Non-dangerous:
 - 16-bit Shell is buggy. If you're going to play with it, don't backspace when there are no more characters. Furthermore, shell may crash or get stuck sometimes.

@@ -19,11 +19,10 @@ ret
 jmp $
 
 .load_shell:
+call reset_device
 call load_shell
 
 pop bx
-pop es
-
 jmp bx ; Jump to shell
 
 

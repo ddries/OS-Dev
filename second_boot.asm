@@ -19,5 +19,5 @@ jmp $ ; Halt computer
 %include "screen.asm"
 %include "keyboard.asm"
 
-loaded: db "Second bootloader has been loaded successfully. (0x0:0x1000)", 13, 0
+loaded: db "Second bootloader has been loaded successfully.", 13, 0
 lkernel: db "F1 - Load 32-bit Kernel.", 13, "F2 - 16-bit Shell.", 13, 0

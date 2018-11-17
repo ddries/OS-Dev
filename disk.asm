@@ -9,11 +9,7 @@ ret
 ; Read sectors routine
 
 load_shell:
-mov ax, 0x0
-mov es, ax
-mov bx, 0x7E00 ; Real address 0x7E000
-
-push es
+mov bx, 0x7DF6 ; Real address 0x7E000 - A = 0x7DF60
 push bx
 
 mov ah, 02h
@@ -30,11 +26,8 @@ jne dsk_error
 ret
 
 load_second_boot:
-mov ax, 0x0
-mov es, ax
 mov bx, 0x1000 ; Real address 0x10000 ( 0x1000 << 4 = *16 (segment = 0x0))
 	       ; ES:BX = 0x0:0x1000
-push es
 push bx
 
 mov ah, 02h

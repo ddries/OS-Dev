@@ -36,6 +36,7 @@ cli
 xor ax, ax
 mov ss, ax ; Set stack start at 0x0000:0x8000
 mov ds, ax ; Neutralize data segment
+mov es, ax
 
 mov bx, 0x8000
 mov bp, bx ; Set up stack
@@ -68,8 +69,6 @@ jc disk_error
 ; ===========================
 
 pop bx
-pop es
-
 jmp bx ; Set by 'load_second_boot' (es:bx)
 
 jmp halt ; halt computer
@@ -89,8 +88,8 @@ jmp $
 
 ; Data
 
-boot_loading_str: db "Bootloader running. (0x0:0x7C00)", 13, 0
-second_boot_loading_str: db "Trying to load second stage bootloader... (0x0:0x1000)", 13, 0
+boot_loading_str: db "Bootloader running.", 13, 0
+second_boot_loading_str: db "Trying to load second stage bootloader...", 13, 0
 derror: db "Error reading from disk...", 13, 0
 
 times 510 - ($ - $$) db 0
