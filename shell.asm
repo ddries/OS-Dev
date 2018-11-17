@@ -1,6 +1,8 @@
-org 0x7DF6
+org 0x7FFF
  
 ; Main Loop
+
+jmp mstart
 
 mstart:
 

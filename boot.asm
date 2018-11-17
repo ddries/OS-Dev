@@ -26,7 +26,7 @@ driveNum:          db    0
 reserved:          db    0
 signature:         db    0x29
 volumeID:          dd    0x2d7e5a1a
-volumeLabel:       db    "NO NAME    "
+volumeLabel:       db    "DRIES OS    "
 fileSysType:       db    "FAT12   "
 
 ; System preparation

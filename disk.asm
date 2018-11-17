@@ -9,7 +9,7 @@ ret
 ; Read sectors routine
 
 load_shell:
-mov bx, 0x7DF6 ; Real address 0x7E000 - A = 0x7DF60
+mov bx, 0x7FFF ; Real address 0x7FFF0
 push bx
 
 mov ah, 02h
