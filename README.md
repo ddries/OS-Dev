@@ -21,7 +21,7 @@
 
 ## How to build
 To build the OS, make use of the makefile. Currently, it only supports UNIX-like environments.
-To do so, use `make media=_foo_` where _foo_ is where the name of the file or the media where you want to compile the OS.
+To do so, use `make media=_foo_` where _foo_ is the name of the file or the media where you want to compile the OS.
 For example, you could do: `make media=os.img` or `make media=/dev/sdb`.
 
 ## Running
