@@ -20,7 +20,11 @@
 - If an error occurs at any time of the boot process, computer will halt. It's a coded feature to prevent damaging the computer. You'll need to restart the PC.
 
 ## How to build
-If you want to test the OS, you can do it in real hardware or emulating.
+To build the OS, make use of the makefile. Currently, it only supports UNIX-like environments.
+To do so, use `make media=_foo_` where _foo_ is where the name of the file or the media where you want to compile the OS.
+For example, you could do: `make media=os.img` or `make media=/dev/sdb`.
+
+## Running
 ### Emulating
 My preference is QEMU. I'm using this tool to test the OS When developing it without having to restart the computer. However, you can use other tools as Bochs or Virtualbox, but you might need to do extra work to get the desired file image of the OS to test it in those programs, as building an ISO file or a configuration file for Bochs.
 
