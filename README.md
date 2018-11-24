@@ -26,7 +26,7 @@ For example, you could do: `make media=os.img` or `make media=/dev/sdb`.
 
 ## Running
 ### Emulating
-My preference is QEMU. I'm using this tool to test the OS When developing it without having to restart the computer. However, you can use other tools as Bochs or Virtualbox, but you might need to do extra work to get the desired file image of the OS to test it in those programs, as building an ISO file or a configuration file for Bochs.
+My preference is QEMU. I'm using this tool to test the OS while developing it without having to restart the computer. However, you can use other tools as Bochs or Virtualbox, but you might need to do extra work to get the desired file image of the OS to test it in those programs, as building an ISO file or a configuration file for Bochs.
 
 ### Real Hardware
 Bootloder is programmed to work as a Floppy Disk. I recommed you burning the OS into a USB stick as it's how I'm doing it. You can use CDs too but extra work may be necessary.
