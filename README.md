@@ -4,6 +4,7 @@
 - boot.asm: First stage bootloader. BPB for FDD emulation, segment registers and stack setup and second stage bootloader load.
 - second_bootloader.asm: Second stage bootloader. Currently, menu to choose between loading the 32-bit Kernel or 16-bit shell.
 - shell.asm: 16-bit shell in real mode. Currently, no commands available. Only printing pressed keys.
+- 32b.asm: File that loads protected mode. GDT, GDT descriptor and routine to test if 32b is running by printing an 'A' to (0,0).
 
 ### Include files:
 - screen.asm: Include file with all screen-related routines. Currently, string printing routine and video mode/cursor configuration.
@@ -23,6 +24,7 @@
 To build the OS, make use of the makefile. Currently, it only supports UNIX-like environments.
 To do so, use `make media=_foo_` where _foo_ is the name of the file or the media where you want to compile the OS.
 For example, you could do: `make media=os.img` or `make media=/dev/sdb`.
+If you want to test the OS with an *.img* file, you might need to create it before running the makefile. To do so, simply use UNIX's *dd* program --> `dd if=/dev/zero of=os.img bs=1024 count=1440`
 
 ## Running
 ### Emulating
