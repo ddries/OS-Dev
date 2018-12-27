@@ -1,0 +1,18 @@
+todo:
+
+bug en con el kernel
+
+se lee mal?
+se guarda mal en la ram?
+se usa mal el offset con org?
+
+cuidado con segmentos
+
+cambios en como se lee del disco?
+
+32b.asm
+disk.asm
+k.asm ?
+boot.asm ?
+keyboard.asm ?
+
