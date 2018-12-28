@@ -3,11 +3,15 @@ org 0x7c00
 
 ; BPB ( USB Floppy disk emulation)
 
+section .code
+
 boot:
 jmp main
 TIMES 3 - ($ - $$) db 0x90 ; Support 2 or 3 byte encoded JMPs before BPB
 
 ; DOS 4.0 EBPB 1.44MB floppy
+
+section .data
 
 OEMname:           db 	 "mkfs.fat"
 bytesPerSector:    dw 	 512
@@ -30,6 +34,9 @@ volumeLabel:       db    "DRIES OS    "
 fileSysType:       db    "FAT12   "
 
 ; System preparation
+
+section .code
+
 main:
 
 cli
@@ -45,10 +52,31 @@ sti
 
 ; Main code
 
-call disk_init ; Setup disk
+; Disk init
 
-call video_mode_config ; Video Mode configuration
-call cursor_config ; Cursor configuration
+mov [driveNum], dl ; Store drive Num
+
+pusha
+
+call reset_disk ; Reset disk
+
+; Video config
+mov ah, 00h
+mov al, 02h ; 80x25 16 bit color mode
+int 10h
+
+; Cursor config
+
+mov ah, 00h
+mov al, 02h
+int 10h
+
+mov ah, 02h
+mov bh, 0x00
+xor dx, dx
+int 10h
+
+popa
 
 mov si, boot_loading_str
 call print_str
@@ -57,7 +85,26 @@ mov si, second_boot_loading_str
 call print_str
 
 ; Loading second stage bootloader into RAM
-call load_second_boot
+
+mov bx, 0x7e00 ; Second bootloader address
+
+mov dl, [driveNum]
+call print_hex
+
+mov ah, 02h
+mov al, 0x1
+mov ch, 0x0
+mov cl, 0x2
+mov dh, 0x0
+
+call print_hex
+
+int 13h
+
+jc disk_error
+
+cmp al, 0x1
+jne disk_error
 
 ; ===========================
 ;  JUMP TO SECOND BOOTLOADER
@@ -69,14 +116,25 @@ jmp bx ; Set by 'load_second_boot' (es:bx)
 cli
 hlt ; halt computer
 
-; End of main code
-
-%include "disk.asm"   ; Disk related routines
-%include "screen.asm" ; Screen-related routines
+reset_disk:
+pusha
+xor ax, ax ; Reset driver
+int 13h
+popa
+ret
 
 disk_error:
 mov si, derror
 call print_str
+
+cli
+hlt
+
+%include "screen.inc"
+
+; End of main code
+
+section .data
 
 ; Data
 

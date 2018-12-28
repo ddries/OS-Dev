@@ -16,7 +16,7 @@ cli
 hlt
 
 
-%include "screen.asm"
+%include "screen.inc"
 %include "keyboard.asm"
 
 loaded: db "Second bootloader has been loaded successfully.", 13, 0

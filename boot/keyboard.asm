@@ -25,7 +25,7 @@ jmp load_kernel ; Jump to kernel
 
 hlt
 
-%include "disk.asm"
+%include "disk.inc"
 %include "32b.asm"
 
 
