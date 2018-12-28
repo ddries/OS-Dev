@@ -14,8 +14,8 @@ je .load_shell
 .load_shell:
 call load_shell
 
-pop bx
 jmp bx ; Jump to shell
+
 cli
 hlt
 

@@ -1,4 +1,5 @@
 org 0x7E00
+bits 16
 
 start:
 ; Check 2nd bootloader loaded

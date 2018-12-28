@@ -1,12 +1,13 @@
 
 
-load_kernel: ; Routine to load 32 bit mode with kernel
+load_kernel: ; Routine to load 32 bit mode kernel
 
-call load_sectkernel   ; --------> BUG <---------
+call load_kentry
 
 cli ; Clear BIOS interrupts
-; Load GDT
-lgdt [gdt_descriptor]
+
+lgdt [gdt_descriptor] ; Load GDT
+
 ; Turn up first bit of CR0 register
 mov eax, cr0
 or eax, 0x1
@@ -29,6 +30,8 @@ mov al, 'X'
 mov ah, 0x0f
 
 mov [edx], ax
+
+jmp bx
 
 hlt ; if error -> halt
 

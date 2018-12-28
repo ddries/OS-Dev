@@ -1,12 +1,7 @@
 
-
-section .bss
-
-BOOTDRIVE: resb 1
-
 ; Initial config
 
-section .code
+section .text
 
 reset_device:
 pusha
@@ -18,19 +13,14 @@ ret
 ; Read sectors routine
 
 load_shell:
-mov bx, 0x7FFF
-push bx
-
-mov dl, [BOOTDRIVE]
-call print_hex
+mov bx, 0x8e00
 
 mov ah, 02h
 mov al, 0x1
 mov ch, 0x0
 mov cl, 0x3
 mov dh, 0x0
-
-call print_hex
+mov dl, [BOOTDRIVE]
 
 int 13h
 
@@ -44,7 +34,26 @@ ret
 
 load_sectkernel:
 mov bx, 0x1000
-push bx
+
+mov ah, 02h
+mov al, 0x1
+mov ch, 0x0
+mov cl, 0x5
+mov dh, 0x0
+mov dl, [BOOTDRIVE]
+
+int 13h
+
+jc dsk_error
+
+cmp al, 0x1
+jne dsk_error
+
+call reset_device
+ret
+
+load_kentry: ; Routine to load kernel entry point file
+mov bx, 0x7fff
 
 mov ah, 02h
 mov al, 0x1
@@ -72,4 +81,6 @@ int 10h
 
 cli
 hlt
+
+BOOTDRIVE equ 0x7C24 ; Address to driveNum entry on BPB
 

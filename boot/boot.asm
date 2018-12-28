@@ -3,15 +3,13 @@ org 0x7c00
 
 ; BPB ( USB Floppy disk emulation)
 
-section .code
+section .text
 
 boot:
 jmp main
 TIMES 3 - ($ - $$) db 0x90 ; Support 2 or 3 byte encoded JMPs before BPB
 
 ; DOS 4.0 EBPB 1.44MB floppy
-
-section .data
 
 OEMname:           db 	 "mkfs.fat"
 bytesPerSector:    dw 	 512
@@ -26,7 +24,7 @@ sectorsPerTrack:   dw    18
 numHeads:          dw    2
 numHiddenSectors:  dd    0
 numSectorsHuge:    dd    0
-driveNum:          db    0
+driveNum:          db    0 ; Address 0x7C24 = Offset 0x24 from origin
 reserved:          db    0
 signature:         db    0x29
 volumeID:          dd    0x2d7e5a1a
@@ -34,8 +32,6 @@ volumeLabel:       db    "DRIES OS    "
 fileSysType:       db    "FAT12   "
 
 ; System preparation
-
-section .code
 
 main:
 
@@ -110,7 +106,6 @@ jne disk_error
 ;  JUMP TO SECOND BOOTLOADER
 ; ===========================
 
-pop bx
 jmp bx ; Set by 'load_second_boot' (es:bx)
 
 cli
@@ -134,13 +129,11 @@ hlt
 
 ; End of main code
 
-section .data
-
-; Data
+section .data ; Data
 
 boot_loading_str: db "Bootloader running.", 13, 0
 second_boot_loading_str: db "Trying to load second stage bootloader...", 13, 0
 derror: db "Error reading from disk...", 13, 0
 
-times 510 - ($ - $$) db 0
+section .bootsig start=0x7C00+510 ;times 510 - ($ - $$) db 0
 dw 0xAA55
