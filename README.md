@@ -7,8 +7,8 @@
 - 32b.asm: File that loads protected mode. GDT, GDT descriptor and routine to test if 32b is running by printing an 'A' to (0,0).
 
 ### Include files:
-- screen.asm: Include file with all screen-related routines. Currently, string printing routine and video mode/cursor configuration.
-- disk.asm: Include file with all disk-related routines. Currently, second stage bootloader loading routine and FDD reset.
+- screen.inc: Include file with all screen-related routines. Currently, string printing routine and video mode/cursor configuration.
+- disk.inc: Include file with all disk-related routines. Currently, second stage bootloader loading routine and FDD reset.
 - keyboard.asm: Include file with all keyboard-related routines. Currently, menu for Kernel/Shell choice.
 
 ### Other files:
@@ -23,12 +23,14 @@
 ## How to build
 To build the OS, make use of the makefile. Currently, it only supports UNIX-like environments.
 To do so, use `make media=_foo_` where _foo_ is the name of the file or the media where you want to compile the OS.
-For example, you could do: `make media=os.img` or `make media=/dev/sdb`.
+For example, you could do: `make media=img/os.img` or `make media=/dev/sdb`.
 If you want to test the OS with an *.img* file, you might need to create it before running the makefile. To do so, simply use UNIX's *dd* program --> `dd if=/dev/zero of=os.img bs=1024 count=1440`
 
 ## Running
 ### Emulating
 My preference is QEMU. I'm using this tool to test the OS while developing it without having to restart the computer. However, you can use other tools as Bochs or Virtualbox, but you might need to do extra work to get the desired file image of the OS to test it in those programs, as building an ISO file or a configuration file for Bochs.
+
+Using QEMU, you can launch the OS by `qemu-system-i386 img/os.img`.
 
 ### Real Hardware
 Bootloder is programmed to work as a Floppy Disk. I recommed you burning the OS into a USB stick as it's how I'm doing it. You can use CDs too but extra work may be necessary.
