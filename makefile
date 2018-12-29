@@ -3,7 +3,7 @@
 
 all: $(media)
 	# Kernel compilation
-	@sudo gcc -ffreestanding -c -m32 kernel/kernel.c -o kernel.o 
+	@sudo gcc -ffreestanding -c -m32 -fno-pie kernel/kernel.c -o kernel.o 
 	# Assembly compilation
 	@sudo nasm -f bin boot/boot.asm -o bin/boot.bin -i include/
 	@sudo nasm -f bin boot/second_boot.asm -o bin/second.bin -i include/ -i boot/
@@ -17,3 +17,5 @@ all: $(media)
 	@sudo dd if=bin/second.bin of=$(media) bs=512 count=1 seek=1 status=none
 	@sudo dd if=bin/shell.bin of=$(media) bs=512 count=1 seek=2 status=none
 	@sudo dd if=bin/kernel.bin of=$(media) count=1 seek=3 status=none
+	# Remove object files
+	@sudo rm *.o

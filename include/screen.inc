@@ -1,6 +1,5 @@
 
 section .text
-
 ; Print string routine
 
 print_str:

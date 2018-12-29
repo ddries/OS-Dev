@@ -1,8 +1,24 @@
 
 
 load_kernel: ; Routine to load 32 bit mode kernel
+mov bx, 0x7fff
 
-call load_kentry
+mov ah, 02h
+mov al, 0x1
+mov ch, 0x0
+mov cl, 0x4
+mov dh, 0x0
+mov dl, [0x7C24]
+
+int 13h
+
+jc dsk_error
+
+cmp al, 0x1
+jne dsk_error
+
+xor ax, ax ; Reset driver
+int 13h
 
 cli ; Clear BIOS interrupts
 
