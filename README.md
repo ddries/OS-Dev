@@ -1,4 +1,11 @@
 # OS Dev repository
+## Directories:
+- boot/ : Everything related to boot process. Everything in assembly language.
+- include/ : Files with routines used by more than one file.
+- bin/ : Raw binary files.
+- kernel/ : Everything related to kernel. 
+- img/ : Image of the OS. Ready to be executed in emulators or real hardware.
+- shell/ : Everything related to the 16 bit shell.
 ## Files:
 ### Main files:
 - boot.asm: First stage bootloader. BPB for FDD emulation, segment registers and stack setup and second stage bootloader load.
