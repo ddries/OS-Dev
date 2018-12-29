@@ -5,18 +5,18 @@
 - second_bootloader.asm: Second stage bootloader. Currently, menu to choose between loading the 32-bit Kernel or 16-bit shell.
 - shell.asm: 16-bit shell in real mode. Currently, no commands available. Only printing pressed keys.
 - 32b.asm: File that loads protected mode. GDT, GDT descriptor and routine to test if 32b is running by printing an 'A' to (0,0).
+- k.asm: Kernel entry point.
+- kernel.c: Kernel
 
 ### Include files:
 - screen.inc: Include file with all screen-related routines. Currently, string printing routine and video mode/cursor configuration.
-- disk.inc: Include file with all disk-related routines. Currently, second stage bootloader loading routine and FDD reset.
-- keyboard.asm: Include file with all keyboard-related routines. Currently, menu for Kernel/Shell choice.
 
 ### Other files:
 - makefile: Used to compile the OS in UNIX. Currently, I have no file to compile in Windows. By the way, you can copy source code and compile yourself very easy.
 
 ## Warnings:
 ### Non-dangerous:
-- 16-bit Shell is buggy. If you're going to play with it, don't backspace when there are no more characters. Furthermore, shell may crash or get stuck sometimes.
+- 16-bit Shell is a bit buggy.
 - If you press a different key of the displayed ones at any time user input is needed, computer will halt. It's not a bug but a coded feature. Just follow the instructions.
 - If an error occurs at any time of the boot process, computer will halt. It's a coded feature to prevent damaging the computer. You'll need to restart the PC.
 
