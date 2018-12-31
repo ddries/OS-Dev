@@ -56,7 +56,7 @@ int 10h
 cli
 hlt
 
-%include "screen.inc"
+%include "screen.asm"
 %include "32b.asm"
 
 loaded: db "Second bootloader has been loaded successfully.", 13, 0

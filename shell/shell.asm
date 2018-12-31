@@ -48,7 +48,7 @@ jmp .read_input ; Next key press
 cli
 jmp $
 
-%include "screen.inc"
+%include "screen.asm"
 
 sloaded: db "Shell loaded", 13, 0
 nl: db "", 13, 0

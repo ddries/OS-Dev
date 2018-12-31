@@ -125,7 +125,7 @@ call print_str
 cli
 hlt
 
-%include "screen.inc"
+%include "screen.asm"
 
 ; End of main code
 
