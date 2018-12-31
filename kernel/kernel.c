@@ -1,20 +1,24 @@
 
 
-void kmain()
+void kernelCheck(void)
 {
-	char* videomem = (char*) 0xb8000; // Create a pointer to the beginning of video memory.
-	*videomem = 'K';
-}
-
-void print(char* string)
-{
-	char* videomem = (char*) 0xb8000;
-	char* print_loc = videomem;	
-
+	char* vidmem = (char*) 0xb8000;
+	char* msg = "Kernel";
+	
 	int i;
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 6; i++)
 	{
-		print_loc = videomem - (i * 2);
-		*print_loc = string[i];
+		vidmem = vidmem + (2 * i);
+		*vidmem = *msg;
+		*(vidmem + 1) = 0x0f;
+
+		*msg++;
 	}
+
 }
+
+void kmain(void)
+{
+	kernelCheck();
+}
+
