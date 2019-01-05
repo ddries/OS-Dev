@@ -1,5 +1,20 @@
 section .text
 
+clear_screen:
+pusha
+
+mov ah, 06h
+mov al, 0x0
+mov bh, 0x0
+xor cx, cx
+mov dh, 25
+mov dl, 80
+
+int 10h
+
+popa
+ret
+
 print_str:
 pusha
 mov ah, 0Ah
