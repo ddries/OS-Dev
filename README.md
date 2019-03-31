@@ -1,4 +1,7 @@
 # OS Dev repository
+
+[![LICENSE](https://img.shields.io/badge/license-NPL%20(The%20996%20Prohibited%20License)-blue.svg)](https://github.com/DriesCode/OS-Dev/blob/master/LICENSE)
+
 ## Directories:
 - boot/ : Everything related to boot process. Everything in assembly language.
 - include/ : Files with routines used by more than one file.
