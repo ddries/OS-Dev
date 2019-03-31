@@ -1,10 +1,7 @@
 # OS Dev repository
 
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.png?v=103)](https://github.com/DriesCode/OS-Dev/blob/master/LICENSE)
-![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)
-
-![star this repo](http://githubbadges.com/star.svg?user=boennemann&repo=badges&style=flat)
-![fork this repo](http://githubbadges.com/fork.svg?user=boennemann&repo=badges&style=flat)
+[![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/DriesCode/OS-Dev)
 
 ## Directories:
 - boot/ : Everything related to boot process. Everything in assembly language.
