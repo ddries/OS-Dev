@@ -46,8 +46,3 @@ Using QEMU, you can launch the OS by `qemu-system-i386 img/os.img`.
 ### Real Hardware
 Bootloder is programmed to work as a Floppy Disk. I recommed you burning the OS into a USB stick as it's how I'm doing it. You can use CDs too but extra work may be necessary.
 You may need to modify BIOS boot options to give more preference to the bootable media you are using than to your main OS (Windows, Linux, Mac...).
-
-## Contact
-**Email:** adri7escalona@gmail.com
-**Twitter**: @a7escalona
-**Reddit**: u/a7escalona
